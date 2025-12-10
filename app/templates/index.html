@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcohol Label Verifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Alcohol Label Verification</h1>
+            <p class="subtitle">Verify that your label matches TTB requirements. Must fill in required fields and upload an image in the correct format</p>
+        </header>
+
+        <main>
+            <form action="/verify" method="POST" enctype="multipart/form-data" id="verificationForm">
+                <div class="form-section">
+                    <h2>Product Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="brand_name">Brand Name <span class="required">*</span></label>
+                        <input type="text" id="brand_name" name="brand_name" 
+                               placeholder="e.g., Old Tom Distillery" required>
+                        <small>The brand under which the product is sold</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product_type">Product Class/Type <span class="required">*</span></label>
+                        <input type="text" id="product_type" name="product_type" 
+                               placeholder="e.g., Kentucky Straight Bourbon Whiskey" required>
+                        <small>The class or type designation of the beverage</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alcohol_content">Alcohol Content (% ABV) <span class="required">*</span></label>
+                        <input type="number" id="alcohol_content" name="alcohol_content" 
+                               step="0.1" min="0" max="100" placeholder="e.g., 45" required>
+                        <small>Alcohol by volume percentage (Do not include % sign) </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="net_contents">Net Contents <span class="required">*</span></label>
+                        <input type="text" id="net_contents" name="net_contents" 
+                            placeholder="e.g., 750 mL" required>
+                        <small>Volume of the product</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Label Image</h2>
+                    
+                    <div class="form-group">
+                        <label for="label_image">Upload Label Image <span class="required">*</span></label>
+                        <input type="file" id="label_image" name="label_image" 
+                               accept="image/*" required>
+                        <small>Upload a clear image of your alcohol label (PNG, JPG, JPEG)</small>
+                    </div>
+
+                    <div id="imagePreview" class="image-preview" style="display: none;">
+                        <img id="preview" src="" alt="Label preview">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Verify Label</button>
+            </form>
+        </main>
+
+        <footer>
+            <p>Simulated TTB Label Verification System</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

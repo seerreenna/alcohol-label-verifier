@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Verification Results</h1>
+        </header>
+
+        <main>
+            {% if error %}
+                <div class="alert alert-error">
+                    <h2>❌ Error</h2>
+                    <p>{{ error }}</p>
+                </div>
+            {% elif results %}
+                {% if results.overall_match %}
+                    <div class="alert alert-success">
+                        <h2>✅ Label Verified Successfully</h2>
+                        <p>The label matches the form data. All required information is consistent.</p>
+                    </div>
+                {% else %}
+                    <div class="alert alert-error">
+                        <h2>❌ Label Verification Failed</h2>
+                        <p>The label does not match the form data. See details below.</p>
+                    </div>
+                {% endif %}
+
+                <div class="results-section">
+                    <h3>Field-by-Field Results:</h3>
+                    <ul class="results-list">
+                        {% for field, check in results.field_checks.items() %}
+                            <li class="{% if check.matched %}result-pass{% else %}result-fail{% endif %}">
+                                <span class="icon">{% if check.matched %}✅{% else %}❌{% endif %}</span>
+                                <div class="result-content">
+                                    <strong>{{ field.replace('_', ' ').title() }}</strong>
+                                    <p>{{ check.message }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                {% if form_data %}
+                    <div class="form-data-section">
+                        <h3>Submitted Information:</h3>
+                        <ul>
+                            <li><strong>Brand Name:</strong> {{ form_data.brand_name }}</li>
+                            <li><strong>Product Type:</strong> {{ form_data.product_type }}</li>
+                            <li><strong>Alcohol Content:</strong> {{ form_data.alcohol_content }}%</li>
+                            {% if form_data.net_contents %}
+                                <li><strong>Net Contents:</strong> {{ form_data.net_contents }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <div class="actions">
+                <a href="/" class="btn-primary">Verify Another Label</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>Simulated TTB Label Verification System</p>
+        </footer>
+    </div>
+</body>
+</html>
