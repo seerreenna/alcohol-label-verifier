@@ -1,11 +1,12 @@
 import os
 from dotenv import load_dotenv # reads env files
 
-load_dotenv()
+if os.path.exists('.env'):
+    load_dotenv()
 
 class Config:
     """Base configuration for secret key"""
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-later'
+    SECRET_KEY = os.environ.get('SECRET_KEY') 
 
     UPLOAD_FOLDER = 'uploads'
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024 # around 16 MB 
