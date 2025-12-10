@@ -150,30 +150,6 @@ These setting may be adjusted in this file as needed. Will change settings for e
 
 ## Deployment
 
-### Render Deployment
-
-1. Create `render.yaml`:
-```yaml
-services:
-  - type: web
-    name: alcohol-label-verifier
-    env: python
-    buildCommand: "pip install -r requirements.txt && apt-get update && apt-get install -y tesseract-ocr"
-    startCommand: "gunicorn run:app"
-    envVars:
-      - key: SECRET_KEY
-        generateValue: true
-      - key: FLASK_ENV
-        value: production
-```
-
-2. Add `gunicorn` to requirements.txt:
-```bash
-echo "gunicorn==21.2.0" >> requirements.txt
-```
-
-3. Push to GitHub and connect to Render
-
 
 ## Key Design Decisions
 
@@ -221,7 +197,7 @@ This project was created as a take-home assignment and is for demonstration purp
 
 [Your Name]
 - GitHub: [@seerreenna](https://github.com/seerreenna)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/serenaealvarez)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/serenaealvarez)
 
 ##  Acknowledgments
 
