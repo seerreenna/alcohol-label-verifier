@@ -91,9 +91,8 @@ http://localhost:5000
 
 ##  Testing
 
-## Testing
 
-Comprehensive testing instructions are available in [TESTING_GUIDE.md](TESTING_GUIDE.md).
+Comprehensive testing instructions are available in [testing_guide.md](testing_guide.md).
 
 ### Quick Start
 
@@ -108,7 +107,7 @@ This creates 10 test images covering various scenarios:
 - Various ABV levels
 - Different volume formats
 
-See [TESTING_GUIDE.md](TESTING_GUIDE.md) for detailed test cases and expected results.
+See [testing_guide.md](testing_guide.md) for detailed test cases and expected results.
 
 ## Project Structure
 ```
@@ -132,7 +131,7 @@ alcohol-label-verifier/
 ├── config.py                    # Configuration settings
 ├── run.py                       # Application entry point
 ├── requirements.txt             # Python dependencies
-├── .env                         # Environment variables (not in git)
+├── .env                         # Environment variables 
 ├── .gitignore                   # Git ignore rules
 └── README.md                    # This file
 ```
@@ -179,8 +178,6 @@ If given more time, I would add:
 - **PDF Support**: Handle PDF documents in addition to images
 - **More Validations**: 
   - Exact government warning text matching
-  - Sulfite declarations (wine)
-  - Vintage year validation
   - Geographic origin verification
 
 ## Known Limitations
@@ -195,7 +192,7 @@ This project was created as a take-home assignment and is for demonstration purp
 
 ## Author
 
-[Your Name]
+[Serena Alvarez]
 - GitHub: [@seerreenna](https://github.com/seerreenna)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/serenaealvarez)
 
