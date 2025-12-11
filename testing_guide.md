@@ -1,7 +1,5 @@
 # Testing Guide for Alcohol Label Verification App
 
-# Testing Guide for Alcohol Label Verification App
-
 This guide provides comprehensive testing instructions for the TTB Label Verification application, including testing both locally and on the live demo.
 
 ## Table of Contents
@@ -244,14 +242,14 @@ Net Contents: 750 mL
 ```
 Brand Name: Old Tom Distillery
 Product Class/Type: Kentucky Straight Bourbon Whiskey
-Alcohol Content: 45.3  ← Slightly different (within ±0.5% tolerance)
+Alcohol Content: 45.3  ← Slightly different (within ±0.3% tolerance)
 Net Contents: 750 mL
 ```
 
 **Expected Result:** ✅ ALL PASS
 - Alcohol Content: ✅ "Alcohol content matches: 45.3% (form) ≈ 45.0% (label)"
 
-**Note:** Tolerance is ±0.5%, so 44.5% to 45.5% would all pass
+**Note:** Tolerance is ±0.3%, so 44.5% to 45.5% would all pass
 
 ---
 
