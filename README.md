@@ -27,7 +27,7 @@ Ready-to-use test images are available in the [`test_images/`](test_images/) fol
 ```
 5. Click "Verify Label" and see all fields pass! 
 
-**More test scenarios:** See [`test_images/README.md`](test_images/README.md) for complete test data and expected results.
+**More test scenarios:** See [`testing_guide.md`](testing_guide.md) for complete test data and expected results.
 
 ##  Project Overview
 
