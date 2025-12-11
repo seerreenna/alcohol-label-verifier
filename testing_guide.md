@@ -249,7 +249,7 @@ Net Contents: 750 mL
 **Expected Result:** ✅ ALL PASS
 - Alcohol Content: ✅ "Alcohol content matches: 45.3% (form) ≈ 45.0% (label)"
 
-**Note:** Tolerance is ±0.3%, so 44.5% to 45.5% would all pass
+**Note:** Tolerance is ±0.3%, so 44.7% to 45.3% would all pass
 
 ---
 
@@ -526,7 +526,7 @@ Quick reference for all available test images:
 Test behavior can be adjusted in `config.py` (local testing only):
 ```python
 SIMILARITY_THRESHOLD = 0.85  # Brand name matching (0.0 to 1.0)
-ABV_TOLERANCE = 0.5          # Alcohol content tolerance (±%)
+ABV_TOLERANCE = 0.3          # Alcohol content tolerance (±%)
 ```
 
 **Effects:**
