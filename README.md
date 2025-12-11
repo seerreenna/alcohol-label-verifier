@@ -209,7 +209,9 @@ alcohol-label-verifier/
 ├── .env                         # Environment variables (not in git)
 ├── .gitignore                   # Git ignore rules
 ├── create_test_labels.py        # Test image generator
-├── testing_guide.md            # Comprehensive testing documentation
+├── testing_guide.md             # Comprehensive testing documentation
+├── test_images/                 # Test images folder
+├── screenshots/                 # Screenshots folder for README
 └── README.md                    # This file
 ```
 
