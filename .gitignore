@@ -6,4 +6,3 @@ uploads/*
 !uploads/.gitkeep
 .DS_Store
 *.log
-test_images/

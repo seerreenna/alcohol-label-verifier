@@ -2,9 +2,73 @@
 
 A web application that simulates the TTB (Alcohol and Tobacco Tax and Trade Bureau) label approval process. The app uses OCR technology to extract information from alcohol beverage labels and verifies that the label content matches the submitted application form.
 
+## Live Demo
+
+**Deployed Application:** https://alcohol-label-verifier-production.up.railway.app/
+
+Click the link to try the application to see the OCR and validation in action!
+
+**Note:** First request may take 30-60 seconds as the service starts up (free tier limitation).
+
+### Try It Out with Test Images
+
+Ready-to-use test images are available in the [`test_images/`](test_images/) folder.
+
+**Quick Test:**
+1. Browse to [`test_images/`](test_images/) in this repository
+2. Download [`01_bourbon_perfect_match.png`](test_images/01_bourbon_perfect_match.png)
+3. Go to the [live demo](https://alcohol-label-verifier-production.up.railway.app/)
+4. Upload the image and enter:
+```
+   Brand Name: Old Tom Distillery
+   Product Type: Kentucky Straight Bourbon Whiskey
+   Alcohol Content: 45
+   Net Contents: 750 mL
+```
+5. Click "Verify Label" and see all fields pass! 
+
+**More test scenarios:** See [`test_images/README.md`](test_images/README.md) for complete test data and expected results.
+
 ##  Project Overview
 
 This application was built as a take-home project for the Department of Treasury as a simple example of the types of problems we would be tackling in the Department. This was intended as a project to demonstrate full stack AI skills that can be applicable to various different projects in the future.
+
+---
+
+## Screenshots
+
+### Application Interface
+
+**Form with Image Preview**
+
+![Form Input](screenshots/form_input_ex.png)
+![Form Image Upload + Preview](screenshots/image_upload_ex.png)
+
+*Upload an alcohol label image and fill in the required information fields. The app provides instant image preview.*
+
+---
+
+### Successful Verification
+
+![Successful Verification](screenshots/verification_ex.png)
+
+*When all fields match, the app displays a success indicator with green checkmarks and detailed confirmation messages!*
+
+---
+
+### Failed Verification
+
+![Failed Verification](screenshots/failed_verification_ex.png)
+
+*When fields don't match, the app shows specific errors explaining what didn't match between the form and the label.*
+
+---
+
+### Submitted Info
+
+![Submitted Info](screenshots/submitted_info_ex.png)
+
+*After each verification attempt,the info you submitted will be visible under the verification explanation.*
 
 ## Features
 
@@ -32,6 +96,11 @@ This application was built as a take-home project for the Department of Treasury
 - HTML5/CSS3
 - Vanilla JavaScript
 
+**Deployment:**
+- Docker containerization
+- Railway platform
+- Gunicorn WSGI server
+
 ## Installation
 
 ### Prerequisites
@@ -53,8 +122,7 @@ sudo apt-get install tesseract-ocr
 
 1. **Clone the repository:**
 ```bash
-git clone <your-repo-url>
-cd alcohol-label-verifier
+git clone https://github.com/seerreenna/alcohol-label-verifier
 ```
 
 2. **Create and activate virtual environment:**
@@ -74,40 +142,45 @@ pip install -r requirements.txt
 cp .env.example .env  
 
 # Edit .env and set:
-SECRET_KEY=your-secret-key-here
+SECRET_KEY=add-your-own-secret-key
 FLASK_ENV=development
 FLASK_DEBUG=1
 ```
 
-5. **Run the application:**
+5. **Finally, Run the application!:**
 ```bash
 python run.py
 ```
 
-6. **Open in browser:**
+It will be viewable in browser at:
 ```
 http://localhost:5000
 ```
 
 ##  Testing
 
+### Test Images
 
-Comprehensive testing instructions are available in [testing_guide.md](testing_guide.md).
+This repository includes 10 sample alcohol labels in the [`test_images/`](test_images/) folder:
 
-### Quick Start
+- **Perfect matches** - Bourbon, vodka, beer, wine, rum
+- **Missing government warning** - Tests error detection
+- **Edge cases** - Long brand names, complex product types, various ABV levels
 
-Generate test images:
+Each test image has corresponding form data documented in [`testing_guide.md`](testing_guide.md).
+
+### Local Testing
+
+**Generate test images:**
 ```bash
 python create_test_labels.py
 ```
 
-This creates 10 test images covering various scenarios:
-- Perfect matches (bourbon, vodka, beer, wine)
-- Missing government warnings
-- Various ABV levels
-- Different volume formats
+This creates 10 test images covering various scenarios.
 
-See [testing_guide.md](testing_guide.md) for detailed test cases and expected results.
+**Run comprehensive tests:**
+See [`testing_guide.md`](testing_guide.md) for detailed test cases, expected results, and troubleshooting.
+
 
 ## Project Structure
 ```
@@ -131,8 +204,12 @@ alcohol-label-verifier/
 ├── config.py                    # Configuration settings
 ├── run.py                       # Application entry point
 ├── requirements.txt             # Python dependencies
-├── .env                         # Environment variables 
+├── Dockerfile                   # Docker configuration
+├── .env.example                 # Environment template
+├── .env                         # Environment variables (not in git)
 ├── .gitignore                   # Git ignore rules
+├── create_test_labels.py        # Test image generator
+├── testing_guide.md            # Comprehensive testing documentation
 └── README.md                    # This file
 ```
 
@@ -145,9 +222,49 @@ Key settings in `config.py`:
 - `MAX_CONTENT_LENGTH`: 16MB (maximum upload file size)
 - `ALLOWED_EXTENSIONS`: png, jpg, jpeg, gif, webp
 
-These setting may be adjusted in this file as needed. Will change settings for entire project.
+These setting may be adjusted in this file as needed and will apply project-wide.
 
 ## Deployment
+The application is deployed on Railway using Docker for consistent environment setup.
+
+#### Option 1: Railway 
+This is the way the live demo way deployed. To deploy it yourself on your own railway instance follow the instructions below:
+
+1. **Fork this repository** on GitHub
+
+2. **Install Railway CLI:**
+```bash
+curl -fsSL https://railway.app/install.sh | sh
+```
+
+3. **Login and deploy:**
+```bash
+railway login
+railway init
+railway up
+```
+
+4. **Set environment variables** in Railway dashboard:
+```
+SECRET_KEY=[auto-generated by Railway]
+FLASK_ENV=production
+FLASK_DEBUG=0
+```
+
+5. **Get your URL:**
+```bash
+railway domain
+```
+
+#### Option 2: Docker 
+
+The included `Dockerfile` works on any platform supporting Docker:
+
+**Build and run locally:**
+```bash
+docker build -t alcohol-label-verifier .
+docker run -p 8080:8080 -e SECRET_KEY=your-secret-key alcohol-label-verifier
+```
 
 
 ## Key Design Decisions
