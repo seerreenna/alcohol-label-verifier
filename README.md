@@ -58,7 +58,7 @@ This application was built as a take-home project for the Department of Treasury
 
 ### Failed Verification
 
-![Failed Verification](screenshots/failed_verification_ex.png)
+![Failed Verification](screenshots/all_failed_verification_ex.png)
 
 *When fields don't match, the app shows specific errors explaining what didn't match between the form and the label.*
 
